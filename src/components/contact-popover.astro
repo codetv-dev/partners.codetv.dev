@@ -51,7 +51,7 @@
 		gap: 30px;
 		inline-size: min(90dvi, 1600px);
 		padding: 60px 5dvi;
-		position: relative;
+		/* position: relative; */
 	}
 
 	dialog::backdrop {
@@ -59,7 +59,7 @@
 	}
 
 	h2 {
-		font-size: clamp(1rem, 3.5cqi, 3.75rem);
+		font-size: clamp(1.75rem, 3.5cqi, 3.75rem);
 		font-weight: normal;
 		inline-size: 100%;
 		line-height: 1;
@@ -80,11 +80,17 @@
 	}
 
 	menu {
+		align-items: center;
 		display: flex;
+		flex-direction: column;
 		gap: 30px;
 		justify-content: center;
 		list-style: none;
 		padding: 0;
+
+		@media (min-width: 550px) {
+			flex-direction: initial;
+		}
 	}
 
 	.close {
