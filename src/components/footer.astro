@@ -3,8 +3,13 @@
 ---
 
 <footer>
-	<div>
-		<a href="https://codetv.dev">&larr; back to CodeTV.dev</a>
+	<div class="links">
+		<p>
+			<a href="https://codetv.dev">&larr; back to CodeTV.dev</a>
+		</p>
+		<p>
+			<a href="https://youtube.com/@codetv-dev">YouTube</a>
+		</p>
 	</div>
 
 	<div>
@@ -22,12 +27,34 @@
 			color-mix(in oklch, var(--white) 80%, transparent);
 		color: var(--gray-light);
 		display: flex;
+		flex-direction: column;
+		gap: 50px;
 		justify-content: space-between;
 		margin-inline: auto;
 		padding: 60px max(5dvi, (100dvi - 1600px) / 2);
+		text-align: center;
+
+		@media (min-width: 800px) {
+			flex-direction: initial;
+			gap: 0;
+			text-align: end;
+
+			.links {
+				text-align: start;
+			}
+		}
+
+		p {
+			margin: 0;
+
+			&:not(:first-child) {
+				margin-block-start: 20px;
+			}
+		}
 
 		a {
 			color: inherit;
+			padding: 10px 0;
 		}
 	}
 </style>
