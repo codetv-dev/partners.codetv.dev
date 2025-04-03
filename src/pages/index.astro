@@ -1,11 +1,158 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/default.astro';
+import Hero from '../components/hero.astro';
+import Partners from '../components/partners.astro';
+import PhotoSection from '../components/photo-section.astro';
+import TwoColumns from '../components/two-columns.astro';
+import ContactPopover from '../components/contact-popover.astro';
+import Footer from '../components/footer.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<Hero />
+
+	<Partners />
+
+	<PhotoSection
+		quote="“CodeTV is doing things this industry has never seen before.”"
+		lede="We make quality tv for developers that integrates your product into our shows."
+		buttonText="Book a call to learn more →"
+		buttonHref="https://calendly.com/codetv/new-project"
+		imageSrc="https://res.cloudinary.com/jlengstorf/image/upload/f_auto/q_auto/v1743135626/codetv/partners/section-quality.png"
+		imageAlt="A woman standing on a game show set behind a podium with a big smile on her face. There's a large wheel in the background with categories on it."
+	/>
+
+	<TwoColumns
+		heading="Our programming is unlike anything else being made in tech."
+		items={[
+			{
+				image: {
+					src: 'https://res.cloudinary.com/jlengstorf/image/upload/f_auto/q_auto/v1743223705/codetv/partners/show-web-dev-challenge.jpg',
+					alt: 'a group of people posing together in front of the Web Dev Challenge logo. they’re all smiling, laughing, and being silly. it looks like they’re having a great time',
+				},
+				heading: 'Web Dev Challenge',
+				cta: {
+					link: 'https://calendly.com/codetv/new-project',
+					label: 'Learn about sponsorship →',
+				},
+			},
+			{
+				image: {
+					src: 'https://res.cloudinary.com/jlengstorf/image/upload/f_auto/q_auto/v1743224056/codetv/partners/show-leet-heat.jpg',
+					alt: 'a woman standing behind a game show podium on the Leet Heat set and smiling. the category wheel is visible behind her',
+				},
+				heading: 'Leet Heat',
+				cta: {
+					link: 'https://calendly.com/codetv/new-project',
+					label: 'Learn about sponsorship →',
+				},
+			},
+		]}
+	>
+		<Fragment slot="item-1">
+			<p>
+				Expert developers from across the community tackle a challenge designed
+				in collaboration with each episode’s sponsor. Show the developer
+				community how real devs build real apps using your tool.
+			</p>
+			<p>
+				Tens of thousands of devs who won’t sign up for a webinar watch this
+				show. Real apps built by credible expert developers demonstrate how your
+				tool fits into real-world stacks.
+			</p>
+		</Fragment>
+		<Fragment slot="item-2">
+			<p>
+				Devs face off in a head-to-head trivia challenge with spicy bites for
+				wrong answers. Show the community your domain expertise and sense of
+				humor in this fun, web dev-focused game show.
+			</p>
+			<p>
+				Associate your brand with the fun side of tech by placing a tile on the
+				wheel, or sponsor a custom hot sauce to bring the pain for wrong answers
+				— or get really weird with a “commercial”.
+			</p>
+		</Fragment>
+	</TwoColumns>
+
+	<PhotoSection
+		quote="“You never know exactly what you’ll make together, but it’s always better than you expected it to be.”"
+		lede="You can’t stand out doing the same thing as everyone else. Let’s make something that’s uniquely you."
+		buttonText="Let’s talk ideas →"
+		buttonHref="https://calendly.com/codetv/new-project"
+		imageSrc="https://res.cloudinary.com/jlengstorf/image/upload/f_auto/q_auto/v1743139756/codetv/partners/section-unique.png"
+		imageAlt="A man is lying on the ground dressed in a robot costume. He's flailing his arms around. Another man is batting at the robot's hands and appears to be shouting at the robot. A woman is in the background pulling out a long length of duct tape and biting the tape to cut the piece."
+		long
+	/>
+
+	<TwoColumns
+		heading="We’re ready to get weird (professionally)."
+		items={[
+			{
+				heading: 'We can help with non-tv things, too',
+				cta: {
+					link: 'https://calendly.com/codetv/new-project',
+					label: 'Book a brainstorming call →',
+				},
+			},
+			{
+				heading: 'Ideas looking for the right partner',
+				cta: {
+					link: 'https://calendly.com/codetv/new-project',
+					label: 'Adopt one of our beautiful brain babies →',
+				},
+			},
+		]}
+	>
+		<Fragment slot="item-1">
+			<p>
+				In addition to our tv work, we also help companies with all varieties of
+				media production.
+			</p>
+			<ul>
+				<li>
+					We write and produce <a
+						href="https://www.youtube.com/watch?v=I303GQ7mb6I&list=PLz8Iz-Fnk_eTD8DSS-zQRrnD8kBpTDM5K&index=5"
+						rel="nofollow noreferrer">ads</a
+					> for companies
+				</li>
+				<li>
+					Want to make a <a href="https://nx.dev/company" rel="nofollow"
+						>company positioning video</a
+					> or <a
+						href="https://www.youtube.com/watch?v=2BLqiNnBPuU"
+						rel="nofollow noreferrer">customer case studies</a
+					>? We got you.
+				</li>
+				<li>
+					A <a href="https://youtu.be/Y5ENi-4Nrh0" rel="nofollow noreferrer"
+						>mini-documentary about your company's event</a
+					>? No problem.
+				</li>
+				<li>Want to create a video podcast for your company? Hit us up.</li>
+			</ul>
+		</Fragment>
+		<Fragment slot="item-2">
+			<p>
+				We’re also sitting on a pile of ideas that are ready to rock as soon as
+				we find the right partner for them. Here are just a few of our
+				favorites:
+			</p>
+			<ul>
+				<li>
+					A <em>Queer Eye</em>/<em>Kitchen Nightmares</em> show where a team of world-class
+					web experts overhaul terrible websites
+				</li>
+				<li>
+					Let’s build a real-life freakin’
+					<em>Knight Rider</em> by putting AI into a car that plays a third character
+					as two developers tour North American tech hubs.
+				</li>
+			</ul>
+		</Fragment>
+	</TwoColumns>
+
+	<ContactPopover />
+
+	<Footer />
 </Layout>

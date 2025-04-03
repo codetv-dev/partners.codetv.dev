@@ -1,0 +1,135 @@
+---
+import { Image } from '@unpic/astro';
+
+export interface Props {
+	quote: string;
+	lede: string;
+	buttonText: string;
+	buttonHref: string;
+	imageSrc: string;
+	imageAlt: string;
+	long?: boolean;
+}
+
+const {
+	quote,
+	lede,
+	buttonText,
+	buttonHref,
+	imageSrc,
+	imageAlt,
+	long = false,
+} = Astro.props;
+---
+
+<section class="photo-section" class:list={{ 'long-quote': long }}>
+	<div class="content">
+		<blockquote>
+			<p>{quote}</p>
+		</blockquote>
+		<p>
+			{lede}
+		</p>
+
+		<a href={buttonHref} class="button" data-open="modal"> {buttonText} </a>
+	</div>
+
+	<Image class="background" src={imageSrc} alt={imageAlt} />
+</section>
+
+<style>
+	.photo-section {
+		align-items: center;
+		display: flex;
+		flex-direction: column-reverse;
+		position: relative;
+
+		@media (min-width: 1280px) {
+			aspect-ratio: 1728 / 705;
+			flex-direction: initial;
+			padding-inline: max(5dvi, (100dvi - 1600px) / 2);
+
+			&::after {
+				background: linear-gradient(
+					to right,
+					var(--black) 30%,
+					transparent 100%
+				);
+				content: '';
+				inset: 0;
+				position: absolute;
+				z-index: 5;
+			}
+		}
+	}
+
+	.content {
+		align-items: start;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 30px 5dvi;
+		position: relative;
+		z-index: 10;
+
+		@media (min-width: 1280px) {
+			inline-size: 50%;
+			padding: 0;
+		}
+
+		blockquote {
+			font-size: clamp(1.5rem, 5.5cqi, 6.25rem);
+			line-height: 1;
+			margin: 0;
+			text-indent: -0.4em;
+
+			@media (min-width: 1280px) {
+				font-size: clamp(1.5rem, 4.5cqi, 6.25rem);
+			}
+
+			@supports (hanging-punctuation: first) {
+				text-indent: 0;
+				hanging-punctuation: first;
+			}
+
+			.long-quote & {
+				font-size: clamp(1rem, 4cqi, 5rem);
+			}
+
+			p {
+				font-family: heading-font;
+				margin: 0;
+				text-shadow: 0 0 4px color-mix(in oklch, var(--black) 80%, transparent);
+				text-wrap: balance;
+			}
+		}
+
+		> p {
+			font-family: monaspace;
+			font-size: clamp(1rem, 2cqi, 2.25rem);
+			font-weight: 100;
+			line-height: 1.25;
+			margin-block: 30px;
+			text-wrap: balance;
+
+			@media (min-width: 1280px) {
+				margin-block: 50px;
+			}
+		}
+	}
+
+	.background {
+		aspect-ratio: 16 / 10;
+		border-block: 0.5px solid color-mix(in oklch, var(--white) 80%, transparent);
+		block-size: 100%;
+		object-fit: cover;
+		object-position: right;
+		z-index: 1;
+
+		@media (min-width: 1280px) {
+			aspect-ratio: unset;
+			inset: 0;
+			position: absolute;
+		}
+	}
+</style>

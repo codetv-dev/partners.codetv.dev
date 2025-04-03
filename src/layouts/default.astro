@@ -1,0 +1,97 @@
+---
+import Header from '../components/header.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Partner with CodeTV</title>
+	</head>
+	<body>
+		<Header />
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	* {
+		box-sizing: border-box;
+	}
+
+	@font-face {
+		font-family: 'heading-font';
+		src: url('/fonts/heading-font-normal.woff2') format('woff2');
+	}
+
+	@font-face {
+		font-family: 'heading-font';
+		src: url('/fonts/heading-font-bold.woff2') format('woff2');
+		font-weight: bold;
+	}
+
+	@font-face {
+		font-family: 'Monaspace';
+		src: url('/fonts/MonaspaceArgonVarVF[wght,wdth,slnt].woff2') format('woff2');
+		font-weight: 100 900;
+		font-style: normal;
+	}
+
+	:root {
+		--black: #080217;
+		--white: #ffffff;
+		--gray-light: #ede9f6;
+		--orange: #f0b525;
+		--blue: #55adff;
+
+		--max-width: 1600px;
+	}
+
+	body {
+		background: var(--black);
+		color: var(--gray-light);
+		font-family: monaspace;
+		margin: 0;
+	}
+
+	:is(h1, h2, h3, h4, h5, h6) {
+		font-family: heading-font, sans-serif;
+		font-weight: bold;
+	}
+
+	a {
+		color: var(--blue);
+	}
+
+	.button {
+		background: var(--white);
+		border-radius: 3px;
+		color: var(--black);
+		display: inline-block;
+		font-family: heading-font;
+		font-size: clamp(1.25rem, 3.5cqi, 2.5rem);
+		line-height: 1;
+		padding: 15px 30px;
+		text-decoration: none;
+		transition: background 100ms linear;
+
+		&:is(:hover, :focus, :active) {
+			background: var(--orange);
+		}
+	}
+
+	.sr-only {
+		border: 0;
+		clip: rect(0, 0, 0, 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		white-space: nowrap;
+		width: 1px;
+	}
+</style>

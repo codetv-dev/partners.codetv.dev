@@ -1,0 +1,164 @@
+---
+import { Image } from '@unpic/astro';
+
+export interface Props {
+	heading: string;
+	items: Array<{
+		heading: string;
+		image?: { src: string; alt: string };
+		cta?: {
+			link: string;
+			label: string;
+		};
+	}>;
+}
+
+const { heading, items } = Astro.props;
+const [item1, item2] = items;
+---
+
+<section class="wrapper">
+	<h2>{heading}</h2>
+
+	<article>
+		{
+			item1.image ? (
+				<div class="image-holder" style={`--img: url(${item1.image.src})`}>
+					<Image src={item1.image.src} alt={item1.image.alt} />
+				</div>
+			) : null
+		}
+
+		<h3>{item1.heading}</h3>
+
+		<slot name="item-1" />
+
+		{
+			item1.cta ? (
+				<p>
+					<a href={item1.cta.link} class="button" data-open="modal">
+						{item1.cta.label}
+					</a>
+				</p>
+			) : null
+		}
+	</article>
+
+	<article>
+		{
+			item2.image ? (
+				<div class="image-holder" style={`--img: url(${item2.image.src})`}>
+					<Image src={item2.image.src} alt={item2.image.alt} />
+				</div>
+			) : null
+		}
+
+		<h3>{item2.heading}</h3>
+
+		<slot name="item-2" />
+
+		{
+			item2.cta ? (
+				<p>
+					<a href={item2.cta.link} class="button" data-open="modal">
+						{item2.cta.label}
+					</a>
+				</p>
+			) : null
+		}
+	</article>
+</section>
+
+<style>
+	.wrapper {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		gap: 50px 5dvi;
+		justify-content: center;
+		padding: 40px 5dvi 60px;
+
+		@media (min-width: 1000px) {
+			align-items: stretch;
+			flex-direction: initial;
+			padding: 80px 5dvi 120px;
+		}
+
+		h2 {
+			font-family: monaspace;
+			font-size: clamp(1rem, 2.5cqi, 2rem);
+			font-weight: 600;
+			inline-size: 100%;
+			margin: 0;
+			text-align: center;
+			text-wrap: balance;
+		}
+	}
+
+	article {
+		container: show / inline-size;
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		inline-size: 100%;
+		max-inline-size: 755px;
+
+		@media (min-width: 1000px) {
+			inline-size: calc((100% - 5dvi) / 2);
+		}
+
+		:is(h2, h3, p) {
+			margin: 0;
+		}
+
+		.image-holder {
+			--img: url(https://res.cloudinary.com/jlengstorf/image/upload/v1743473132/placeholder.jpg);
+
+			position: relative;
+
+			&::after {
+				background-image: var(--img);
+				content: '';
+				filter: blur(100px);
+				inset: 0;
+				opacity: 0.8;
+				position: absolute;
+				z-index: -1;
+			}
+		}
+
+		img {
+			aspect-ratio: 770 / 433;
+			border-radius: 5px;
+			display: block;
+			inline-size: 100%;
+			position: relative;
+			z-index: 10;
+		}
+
+		h3 {
+			font-size: clamp(1rem, 10cqi, 4.375rem);
+			font-weight: normal;
+			line-height: 1;
+		}
+
+		:is(p, li) {
+			font-size: clamp(1rem, 4cqi, 1.5rem);
+			font-weight: 100;
+			line-height: 1.45;
+		}
+
+		:is(p, ul) {
+			margin: 0;
+		}
+
+		li:not(:first-child) {
+			margin-block-start: 16px;
+		}
+
+		p:has(.button) {
+			margin-block-start: auto;
+		}
+	}
+</style>

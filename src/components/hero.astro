@@ -1,0 +1,103 @@
+---
+
+---
+
+<section class="hero">
+	<h1>
+		Want to reach developers?
+		<em>Tell a story worth watching.</em>
+	</h1>
+
+	<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+	<div class="player">
+		<mux-player
+			stream-type="on-demand"
+			playback-id="bYUbVdQsLvn88yRjwVnjCel29AVzFlvbUVS00PnrW9F8"
+			loop
+			muted
+			controls="false"
+			autoplay></mux-player>
+		<canvas
+			width="800"
+			height="450"
+			aria-hidden="true"
+			class="ambient"
+			id="ambient"></canvas>
+	</div>
+</section>
+
+<script type="module">
+	const muxPlayer = document.querySelector('mux-player');
+	const video = muxPlayer.media.nativeEl;
+	const canvas = document.querySelector('canvas');
+	const ctx = canvas.getContext('2d');
+
+	function draw() {
+		if (video.paused || video.ended) {
+			return;
+		}
+
+		ctx.drawImage(video, 0, 0, 800, 450);
+		video.requestVideoFrameCallback(draw);
+	}
+
+	video.addEventListener('play', draw, false);
+
+	draw();
+</script>
+
+<style>
+	h1 {
+		font-size: clamp(1.45rem, 7.5rem, 6.5dvi);
+		line-height: 0.9;
+		margin-inline: auto;
+		max-inline-size: min(90dvi, var(--max-width));
+		position: relative;
+		z-index: 10;
+
+		em {
+			color: var(--orange);
+			display: block;
+			font-size: 0.916em;
+			font-style: normal;
+			text-align: end;
+		}
+	}
+
+	.player {
+		aspect-ratio: 16 / 9;
+		container: player / inline-size;
+		margin-inline: auto;
+		max-inline-size: min(90dvi, var(--max-width) * 0.8);
+		position: relative;
+		z-index: 1;
+	}
+
+	mux-player,
+	canvas {
+		aspect-ratio: 16 / 9;
+		block-size: auto;
+		border-radius: 13px;
+		inline-size: 100cqi;
+		inset: 0;
+		position: absolute;
+	}
+
+	mux-player {
+		--controls: none;
+
+		border: 0.5px solid color-mix(in oklch, var(--gray-light) 60%, transparent);
+		box-shadow: 0 0 60px var(--black);
+		overflow: hidden;
+		z-index: 10;
+	}
+
+	:global(mux-player::part(video)) {
+	}
+
+	canvas {
+		filter: blur(200px);
+		opacity: 0.8;
+		z-index: 1;
+	}
+</style>

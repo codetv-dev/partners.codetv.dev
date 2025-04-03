@@ -1,0 +1,103 @@
+---
+
+---
+
+<dialog>
+	<h2>Let’s make something fun (and effective!) together</h2>
+	<p>
+		Choose a contact method and we’ll talk about your goals and how CodeTV can
+		help you meet them.
+	</p>
+
+	<menu>
+		<li>
+			<a href="https://calendly.com/codetv/new-project" class="button"
+				>Book a Call</a
+			>
+		</li>
+		<li>
+			<a href="mailto:info@codetv.dev" class="button">Email info@codetv.dev</a>
+		</li>
+	</menu>
+
+	<form method="dialog" class="close">
+		<button type="submit" class="button"
+			>&times;<span class="sr-only"> close</span></button
+		>
+	</form>
+</dialog>
+
+<script>
+	const modal = document.querySelector('dialog');
+	const btns = document.querySelectorAll('[data-open="modal"]');
+
+	btns.forEach((btn) => {
+		btn.addEventListener('click', (event) => {
+			event.preventDefault();
+
+			modal?.showModal();
+		});
+	});
+</script>
+
+<style>
+	:modal {
+		background: var(--black);
+		border: 0.5px solid color-mix(in oklch, var(--gray-light) 60%, transparent);
+		border-radius: 13px;
+		color: var(--white);
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		inline-size: min(90dvi, 1600px);
+		padding: 60px 5dvi;
+		position: relative;
+	}
+
+	dialog::backdrop {
+		background: color-mix(in oklch, var(--black) 80%, transparent);
+	}
+
+	h2 {
+		font-size: clamp(1rem, 3.5cqi, 3.75rem);
+		font-weight: normal;
+		inline-size: 100%;
+		line-height: 1;
+		margin: 0;
+		text-align: center;
+	}
+
+	:is(p, menu) {
+		margin: 0;
+	}
+
+	p {
+		font-size: clamp(1rem, 4cqi, 1.5rem);
+		font-weight: 100;
+		line-height: 1.45;
+		text-align: center;
+		text-wrap: balance;
+	}
+
+	menu {
+		display: flex;
+		gap: 30px;
+		justify-content: center;
+		list-style: none;
+		padding: 0;
+	}
+
+	.close {
+		inset-block-start: 10px;
+		inset-inline-end: 10px;
+		position: absolute;
+
+		.button {
+			aspect-ratio: 1;
+			border-radius: 5px;
+			font-size: 3.5rem;
+			line-height: 0.5;
+			padding: 0 10px;
+		}
+	}
+</style>
